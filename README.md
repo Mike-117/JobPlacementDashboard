@@ -4,7 +4,7 @@
 
 My last two weeks at the Tech Academy were spent as part of a development team. Our task was to create a new website for a local Portland theater using an ASP.NET MVC application in C#. Much of the new website had already been created by the time of my sprint, so there many front-end tasks to be accomplished along with the continuing back-end work. This allowed me the chance to exercise my skills in HTML, CSS, JavaScript, as well as C# and SQL. Beyond raw coding experience, these two weeks exposed me to the dynamics of team development within the context of DevOps and Scrum. I also gained more fluency in the use of Visual Studio, GitHub, and other tools. I know the future will provide me many opportunities to revisit these skills and expand on them.
 
-Below are descriptions of the stories I worked on, as well as code snippets and screenshots to better illustrate the 
+Below are descriptions of the stories I worked on, as well as code snippets and screenshots to better illustrate my perfomance.
 
 ## Archive Page Styling
 
@@ -67,6 +67,9 @@ I put the JavaScript with the premade user profiles at the bottom of the page an
   });
 </script>
 ```
+
+![EasyLoginScreenshot](EasyLoginScreenshot.png)
+
 ## CastMembers Image Update
 
 Among the properties of the class CastMember was one called Photo. But the website also had entire class called Photo, and the designers wanted all images to be in the Photo class. My job was to replace the CastMember.Photo with a new property called PhotoId, which would store the ID of the Photo image. This story was completed in the following steps:
