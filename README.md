@@ -8,7 +8,7 @@ Below are descriptions of the stories I worked on, as well as code snippets and 
 * [Archive Page Styling](#archive-page-styling)
 * [Archive Page Responsiveness](#archive-page-responsiveness)
 * [Easy Login Buttons](#easy-login-buttons)
-* [CastMembers Image Update](castmembers-image-update)
+* [CastMembers Image Update](#castmembers-image-update)
 
 ## Archive Page Styling
 
