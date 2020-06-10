@@ -80,7 +80,7 @@ Among the properties of the class CastMember was one called Photo. But the websi
 * [Create CastMember.PhotoId to replace CastMember.Photo](#create-castmember.photoid-to-replace-castmember-photo)
 * [Update CastMember CRUD pages](#update-castmember-crud-pages)
 * [Display preview images](#display-preview-images)
-* [Update seeding with CastMember.PhotoId](#update-seeding-with-castmember.photoid)
+* [Update seeding with CastMember.PhotoId](#Update-seeding-with-CastMember.PhotoId)
 
 ### Create CastMember.PhotoId to replace CastMember.Photo
 The image referenced by CastMember.Photo must be referenced by a new instance of Photo, but its id must match the proper CastMember. So I decided that when instantiating a new CastMember object, I would call the CreatePhoto method and create a new Photo whose Title was identical to the CastMember's Name property. Since CreatePhoto returns the Photo.PhotoId, I assigned that value to the new CastMember.PhotoId.
