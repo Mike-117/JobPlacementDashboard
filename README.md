@@ -1,30 +1,30 @@
-Live Project
+# Live Project
 
-Introduction
+## Introduction
 
 My last two weeks at the Tech Academy were spent as part of a development team. Our task was to create a new website for a local Portland theater using an ASP.NET MVC application in C#. Much of the new website had already been created by the time of my sprint, so there many front-end tasks to be accomplished along with the continuing back-end work. This allowed me the chance to exercise my skills in HTML, CSS, JavaScript, as well as C# and SQL. Beyond raw coding experience, these two weeks exposed me to the dynamics of team development within the context of DevOps and Scrum. I also gained more fluency in the use of Visual Studio, GitHub, and other tools. I know the future will provide me many opportunities to revisit these skills and expand on them.
 
 Below are descriptions of the stories I worked on, as well as code snippets and screenshots to better illustrate the 
 
-Archive Page Styling
+## Archive Page Styling
 
 The Archive Page, which displayed both current and past productions, had several display issued that needed to be addressed. I fixed the CSS which was improperly selecting the elements, I corrected the alternate text for each image, and I resized the Bootstrap pill badges which were large and unsightly.
 
-Archive Page Responsiveness
+## Archive Page Responsiveness
 
 Also on the Archive Page, the production photos were not responding to changes in window sizing. If there were too many in a row, they would be squeezed thin; if there were too few, they would stretch to occupy the entire viewport. The images were contained in a card-deck, so I adjusted the minimum width to ensure they would stack before shrinking too much. I also adjusted the maximum width of each to prevent the undue stretching. Unfortunately, when I changed the card styling it adversely affected the cards on all the other pages. So I created a custom class for the archive cards and applied the changes to that one.
 
+```
 .archivecard {
     min-width: 30rem;
     max-width: 40rem;
 }
+```
 
-
-
-Easy Login Buttons
+## Easy Login Buttons
 
 The website accomodates three types of users: Administrator, Cast Member, and Subscriber. There is a form each user must submit to be logged in properly, which requires inputs of name, user type, and password. I was tasked to create a workaround which would allow a user to bypass the login process with a click of a button. This was purely for the convenience of developers, and my code will be removed from the site before deployment.
-
+```
 <div class="col-md-4">
     <section class="loginpadding" id="loginForm">
 
@@ -77,16 +77,17 @@ The website accomodates three types of users: Administrator, Cast Member, and Su
     document.getElementById("login").submit();
   });
 </script>
+```
 
 
 
-
-CastMembers Image Update
+## CastMembers Image Update
 
 Among the properties of the class CastMember was one called Photo. But the website also had entire class called Photo, and the designers wanted all images to be in the Photo class. My job was to replace the CastMember.Photo with a new property called PhotoId, which would store the ID of the Photo image. This story was completed in the following steps:
 
+### Create CastMember.PhotoId to replace CastMember.Photo
 The image referenced by CastMember.Photo must be referenced by a new instance of Photo, but its id must match the proper CastMember. So I decided that when instantiating a new CastMember object, I would call the CreatePhoto method and create a new Photo whose Title was identical to the CastMember's Name property. Since CreatePhoto returns the Photo.PhotoId, I assigned that value to the new CastMember.PhotoId.
-
+```
      public ActionResult Create()
         {
             ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
@@ -150,22 +151,22 @@ The image referenced by CastMember.Photo must be referenced by a new instance of
 
             return View(castMember);
         }
+```
 
 
-
-
+### Update CastMember CRUD pages
 All the CastMember CRUD pages now needed to be updated to accomodate the new PhotoId property. I called the DisplayPhoto method from the PhotoController on the relevant Index, Edit, Details, and Delete pages.
-
+```
  <img class="castImage" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })" style="width:100%" />
+```
 
 
 
 
 
-
-
+### Display preview images
 I also altered the CastMember Create and Edit pages to display a preview of the image file which the user will assign to the cast member.
-
+```
   <div class="form-group">
                 @Html.Label("Photo")
               <div class="col-md-10 formBox">
@@ -176,12 +177,12 @@ I also altered the CastMember Create and Edit pages to display a preview of the 
 
               </div>
             </div>
+```
 
 
-
-
+### Update seeding with CastMember.PhotoId
 The website had been seeded with a dummy cast, and I had to adjust the seeding to use the new PhotoId. So I modified the Startup Page to seed all the new Photo images, then assign the CastMember.PhotoId the value of the id field in the new Photo database table.
-
+```
     private void SeedCastPhotos()
         {
             var converter = new ImageConverter();
@@ -360,5 +361,5 @@ The website had been seeded with a dummy cast, and I had to adjust the seeding t
             castMembers.ForEach(castMember => context.CastMembers.AddOrUpdate(c => c.Name, castMember));
             context.SaveChanges();
         }
-
+```
 
